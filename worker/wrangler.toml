@@ -1,0 +1,10 @@
+name = "nuwairi-wedding-api"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+kv_namespaces = [
+  { binding = "RSVPS", id = "e76903e52fb44f9e9e884df2dab3d9a7" }
+]
+
+[observability]
+enabled = true
