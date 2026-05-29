@@ -90,7 +90,7 @@
       radial-gradient(ellipse 40% 30% at 15% 80%, rgba(244, 200, 168, 0.07) 0%, transparent 70%),
       #020207;
   }
-  #stars, #particles, #petals {
+  #stars, #particles, #petals, #roses {
     position: fixed; inset: 0; z-index: 1;
     pointer-events: none;
   }
@@ -127,7 +127,7 @@
     padding: 48px 16px 80px;
   }
 
-  /* ============ Glass Card — White Frosted ============ */
+  /* ============ Glass Card — White Frosted (more translucent) ============ */
   .glass-card {
     position: relative;
     border-radius: 36px;
@@ -136,22 +136,22 @@
     text-align: center;
 
     background:
-      radial-gradient(ellipse at 18% 8%, rgba(255, 255, 255, 0.88) 0%, rgba(255, 253, 245, 0.78) 55%, transparent 90%),
-      radial-gradient(ellipse at 88% 92%, rgba(244, 208, 107, 0.35) 0%, transparent 60%),
+      radial-gradient(ellipse at 18% 8%, rgba(255, 255, 255, 0.65) 0%, rgba(255, 253, 245, 0.55) 55%, transparent 90%),
+      radial-gradient(ellipse at 88% 92%, rgba(244, 208, 107, 0.28) 0%, transparent 60%),
       linear-gradient(155deg,
-        rgba(255, 255, 255, 0.78) 0%,
-        rgba(252, 248, 235, 0.72) 45%,
-        rgba(244, 208, 107, 0.42) 100%);
-    backdrop-filter: blur(28px) saturate(1.4) brightness(1.04);
-    -webkit-backdrop-filter: blur(28px) saturate(1.4) brightness(1.04);
+        rgba(255, 255, 255, 0.52) 0%,
+        rgba(252, 248, 235, 0.46) 45%,
+        rgba(244, 208, 107, 0.30) 100%);
+    backdrop-filter: blur(34px) saturate(1.45) brightness(1.05);
+    -webkit-backdrop-filter: blur(34px) saturate(1.45) brightness(1.05);
 
-    border: 1px solid rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.55);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.95),
-      inset 0 -1px 0 rgba(184, 138, 30, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85),
+      inset 0 -1px 0 rgba(184, 138, 30, 0.3),
       0 30px 80px rgba(0, 0, 0, 0.55),
       0 0 80px rgba(244, 208, 107, 0.22),
-      0 0 140px rgba(255, 255, 255, 0.08);
+      0 0 140px rgba(255, 255, 255, 0.06);
     animation: rise 1s cubic-bezier(.16,1,.3,1) 0.1s both;
   }
   .glass-card::before {
@@ -208,7 +208,7 @@
     filter: drop-shadow(0 0 10px rgba(244, 208, 107, 0.3));
   }
 
-  /* ============ Sender ribbon ============ */
+  /* ============ Sender / Families ribbon ============ */
   .from-ribbon {
     margin-bottom: 22px;
   }
@@ -218,7 +218,7 @@
     letter-spacing: 7px;
     color: var(--ink-dim);
     text-transform: uppercase;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   .from-ribbon .lbl::before,
   .from-ribbon .lbl::after {
@@ -228,10 +228,18 @@
     opacity: 0.5;
     font-size: 8px;
   }
-  .from-ribbon .name {
+  .from-ribbon .families {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(10px, 3vw, 18px);
     font-family: 'Aref Ruqaa', serif;
-    font-size: clamp(18px, 4vw, 24px);
     font-weight: 700;
+    font-size: clamp(20px, 5vw, 30px);
+    line-height: 1.2;
+  }
+  .from-ribbon .families .fam {
     background: var(--gold-shim);
     background-size: 220% 100%;
     -webkit-background-clip: text;
@@ -239,6 +247,12 @@
     -webkit-text-fill-color: transparent;
     animation: shimmer 6s linear infinite;
     filter: drop-shadow(0 1px 6px rgba(212, 169, 58, 0.35));
+  }
+  .from-ribbon .families .amp {
+    color: var(--gold-3);
+    font-size: 0.7em;
+    opacity: 0.85;
+    filter: drop-shadow(0 0 6px var(--gold-2));
   }
 
   /* ============ Rotating Glass Mandala ============ */
@@ -803,6 +817,7 @@
 
 <div class="cosmos"></div>
 <canvas id="stars"></canvas>
+<canvas id="roses"></canvas>
 <canvas id="petals"></canvas>
 <canvas id="particles"></canvas>
 
@@ -884,10 +899,14 @@
     <!-- Bismillah -->
     <p class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
 
-    <!-- Sender ribbon -->
+    <!-- Families ribbon — the two houses meeting -->
     <div class="from-ribbon">
-      <div class="lbl">دَعوةٌ كَريمة من</div>
-      <div class="name">أبو عبيدة عبد المجيد محمد النويري</div>
+      <div class="lbl">بِدَعوَةٍ مِن</div>
+      <div class="families">
+        <span class="fam">آلُ الشَّايِقي</span>
+        <span class="amp">✦</span>
+        <span class="fam">آلُ تولا</span>
+      </div>
     </div>
 
     <!-- Rotating Glass Mandala -->
@@ -972,7 +991,7 @@
     <div class="hero">
       <div class="label-small">سورة الروم — آية ٢١</div>
       <h1 class="title">وَجَعَلَ بَيْنَكُم<br>مَّوَدَّةً وَرَحْمَةً</h1>
-      <div class="subtitle">يَتَشَرَّفُ بِدَعوَتِكم لِمُشارَكَتِه فَرحَةَ العُمر</div>
+      <div class="subtitle">يَتَشَرَّفونَ بِدَعوَتِكم لِمُشارَكَتِهم فَرحَةَ العُمر</div>
     </div>
 
     <div class="divider">
@@ -1026,11 +1045,10 @@
     </div>
 
     <p class="stanza">
-      <strong>يَتَشَرَّفُ العَريس</strong><br>
-      أبو عُبَيدة عبد المجيد محمد النويري،<br>
-      ومن خَلفِه الأهلُ الكِرام،<br>
-      بِدَعوَتِكم لِمُشارَكَتِنا فَرحَةَ الزَّواجِ المُبارَك،<br>
-      على كَريمَةِ الأُسرَة <em>رميساء أحمد حسن تولا،</em><br>
+      <strong>يَتَشَرَّفُ آلُ الشَّايِقي وآلُ تولا</strong><br>
+      بِدَعوَتِكم لِمُشارَكَتِهم فَرحَةَ الزَّواجِ المُبارَك،<br>
+      على كَريمِ الأُسرَة <em>أبو عُبَيدة عبد المجيد محمد النويري،</em><br>
+      وكَريمَةِ الأُسرَة <em>رميساء أحمد حسن تولا،</em><br>
       سائلينَ اللهَ أن يَكتُبَ بَينَهما المَوَدَّةَ والرَّحمَة،<br>
       وأن يُبارِكَ لَهُما ويُبارِكَ عَلَيهِما،<br>
       ويَجمَعَ بَينَهُما في خَير.
@@ -1198,17 +1216,20 @@
 
   const starsCanvas    = document.getElementById('stars');
   const starsCtx       = starsCanvas.getContext('2d');
+  const rosesCanvas    = document.getElementById('roses');
+  const rosesCtx       = rosesCanvas.getContext('2d');
   const petalsCanvas   = document.getElementById('petals');
   const petalsCtx      = petalsCanvas.getContext('2d');
   const particlesCanvas = document.getElementById('particles');
   const particlesCtx   = particlesCanvas.getContext('2d');
   let stars = [];
+  let roses = [];
   let petals = [];
   let particles = [];
   const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
 
   function resize() {
-    [starsCanvas, petalsCanvas, particlesCanvas].forEach(c => {
+    [starsCanvas, rosesCanvas, petalsCanvas, particlesCanvas].forEach(c => {
       c.width  = innerWidth  * dpr;
       c.height = innerHeight * dpr;
       c.style.width  = innerWidth + 'px';
@@ -1369,8 +1390,98 @@
     }
   }
 
+  /* Falling red rose petals & blossoms — wedding background */
+  function spawnRose() {
+    roses.push({
+      x: Math.random() * innerWidth,
+      y: -25,
+      vy: 0.3 + Math.random() * 0.55,
+      vx: (Math.random() - 0.5) * 0.45,
+      sz: 7 + Math.random() * 7,
+      rot: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.018,
+      sway: Math.random() * Math.PI * 2,
+      swaySpeed: 0.008 + Math.random() * 0.018,
+      a: 0,
+      maxA: 0.55 + Math.random() * 0.3,
+      life: 0,
+      maxLife: 800 + Math.random() * 500,
+      kind: Math.random() < 0.72 ? 'petal' : 'blossom',
+      shade: Math.random()
+    });
+  }
+  function drawRose(ctx, p) {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot);
+    const sz = p.sz;
+
+    if (p.kind === 'petal') {
+      const grd = ctx.createLinearGradient(0, -sz, 0, sz);
+      if (p.shade < 0.5) {
+        grd.addColorStop(0, `rgba(232, 76, 96, ${p.a})`);
+        grd.addColorStop(1, `rgba(155, 24, 48, ${p.a * 0.9})`);
+      } else {
+        grd.addColorStop(0, `rgba(199, 46, 72, ${p.a})`);
+        grd.addColorStop(1, `rgba(110, 18, 38, ${p.a * 0.9})`);
+      }
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      ctx.moveTo(0, -sz);
+      ctx.bezierCurveTo(sz * 0.7,  -sz * 0.6, sz * 0.7, sz * 0.6, 0, sz);
+      ctx.bezierCurveTo(-sz * 0.7, sz * 0.6, -sz * 0.7, -sz * 0.6, 0, -sz);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = `rgba(80, 14, 30, ${p.a * 0.35})`;
+      ctx.lineWidth = 0.5;
+      ctx.beginPath();
+      ctx.moveTo(0, -sz * 0.8);
+      ctx.lineTo(0, sz * 0.8);
+      ctx.stroke();
+    } else {
+      /* full 5-petal red rose blossom with gold center */
+      for (let i = 0; i < 5; i++) {
+        const a = (i / 5) * Math.PI * 2 - Math.PI / 2;
+        const px = Math.cos(a) * sz * 0.5;
+        const py = Math.sin(a) * sz * 0.5;
+        const grd = ctx.createRadialGradient(px, py, 0, px, py, sz * 0.75);
+        grd.addColorStop(0,   `rgba(232, 90, 110, ${p.a})`);
+        grd.addColorStop(0.7, `rgba(168, 30, 54,  ${p.a * 0.9})`);
+        grd.addColorStop(1,   `rgba(95, 12, 28,   ${p.a * 0.55})`);
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.arc(px, py, sz * 0.6, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.fillStyle = `rgba(244, 208, 107, ${p.a})`;
+      ctx.beginPath();
+      ctx.arc(0, 0, sz * 0.22, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.restore();
+  }
+  function drawRoses() {
+    rosesCtx.clearRect(0, 0, innerWidth, innerHeight);
+    if (Math.random() < 0.12 && roses.length < 30) spawnRose();
+    for (let i = roses.length - 1; i >= 0; i--) {
+      const p = roses[i];
+      p.life++;
+      p.sway += p.swaySpeed;
+      p.x += p.vx + Math.sin(p.sway) * 0.4;
+      p.y += p.vy;
+      p.rot += p.rotSpeed;
+      if      (p.life < 120)              p.a = (p.life / 120) * p.maxA;
+      else if (p.life > p.maxLife - 120)  p.a = ((p.maxLife - p.life) / 120) * p.maxA;
+      else                                p.a = p.maxA;
+      if (p.life > p.maxLife || p.y > innerHeight + 25) { roses.splice(i, 1); continue; }
+      drawRose(rosesCtx, p);
+    }
+  }
+
   function loop(t) {
     drawStars(t);
+    drawRoses();
     drawPetals();
     drawParticles();
     requestAnimationFrame(loop);
