@@ -824,20 +824,21 @@
   }
   .rsvp-choices {
     display: flex;
+    flex-direction: column;
     gap: 12px;
-    margin-top: 4px;
+    margin-top: 8px;
   }
   .rsvp-choices .choice {
-    flex: 1;
-    padding: 14px 16px;
-    border-radius: 12px;
+    width: 100%;
+    padding: 15px 18px;
+    border-radius: 14px;
     font-family: 'Aref Ruqaa', serif;
     font-weight: 700;
     font-size: clamp(15px, 3.6vw, 18px);
     cursor: pointer;
     transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
     border: none;
-    line-height: 1.2;
+    line-height: 1.3;
   }
   .rsvp-choices .choice.yes {
     background: linear-gradient(180deg, #f4d06b 0%, #d4a93a 50%, #8a6817 100%);
@@ -1129,9 +1130,8 @@
       <span class="ln"></span><span class="star">✦</span><span class="ln"></span>
     </div>
 
-    <!-- Quranic verse plaque -->
+    <!-- Quranic verse -->
     <div class="verse-plaque">
-      <span class="verse-label">آية الزواج</span>
       <p class="verse-text">
         وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا
         لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ
@@ -1179,7 +1179,7 @@
       <strong>يَتَشَرَّفُ آلُ الشَّايِقي وآلُ تولا</strong><br>
       بِدَعوَتِكم لِمُشارَكَتِهم فَرحَةَ الزَّواجِ المُبارَك،<br>
       على كَريمِ الأُسرَة <em>أبو عُبَيدة عبد المجيد محمد النويري،</em><br>
-      وكَريمَةِ الأُسرَة <em>رميساء أحمد حسن تولا،</em><br>
+      وكَريمَةِ الأُسرَة <em>أحمد حسن تولا،</em><br>
       سائلينَ اللهَ أن يَكتُبَ بَينَهما المَوَدَّةَ والرَّحمَة،<br>
       وأن يُبارِكَ لَهُما ويُبارِكَ عَلَيهِما،<br>
       ويَجمَعَ بَينَهُما في خَير.
@@ -1230,11 +1230,11 @@
         <p class="rsvp-sub">هل ستُؤنِسوننا في هذا اليومِ المُبارَك؟</p>
 
         <input type="text" id="rsvp-name" placeholder="اسمك الكريم" maxlength="60" autocomplete="name">
-        <textarea id="rsvp-msg" placeholder="رسالة للعروسَين (اختياري)..." rows="3" maxlength="500"></textarea>
+        <textarea id="rsvp-msg" placeholder="رسالةٌ للعَروسَين..." rows="3" maxlength="500"></textarea>
 
         <div class="rsvp-choices">
           <button type="button" class="choice yes" id="btn-yes">سأحضُرُ بإذنِ الله</button>
-          <button type="button" class="choice no"  id="btn-no">مُعتَذِر</button>
+          <button type="button" class="choice no"  id="btn-no">أعتذرُ وأُوَجِّهُ رسالةً للعروسَين</button>
         </div>
       </div>
 
@@ -1810,8 +1810,9 @@
   }
   function confirmNo(name) {
     showConfirmation(`
-      <div class="big">شُكرًا يا ${esc(name)}</div>
-      <div>ستَكونُ مَعَنا بالدُّعاء — ونَنتَظِرُك في فَرحَةٍ أُخرى <span class="heart">❤</span></div>
+      <div class="big">بارَكَ اللهُ فيك يا ${esc(name)}</div>
+      <div>رِسالتُكَ ستَصِلُ العَروسَين بإذنِ الله،<br>
+      ودُعاؤُكَ زادٌ نَتَزَوَّدُ بِه <span class="heart">❤</span></div>
     `, true);
   }
   function validateName() {
@@ -1841,6 +1842,12 @@
   $no.addEventListener('click', () => {
     const name = validateName(); if (!name) return;
     const msg = $msg.value.trim();
+    if (!msg) {
+      $msg.classList.add('err');
+      $msg.focus();
+      setTimeout(() => $msg.classList.remove('err'), 2200);
+      return;
+    }
     try {
       localStorage.setItem('nuwairi_rsvp', JSON.stringify({ name, attend: 'no', msg, ts: Date.now() }));
     } catch (_) {}
