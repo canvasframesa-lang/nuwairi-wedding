@@ -3,3 +3,5 @@ _preview_*.png
 _preview*.png
 _p_*.png
 _live_check.png
+worker/.wrangler/
+worker/node_modules/
