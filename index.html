@@ -1958,6 +1958,18 @@
   }
 
   /* ============ RSVP form ============ */
+  const API_URL = 'https://nuwairi-wedding-api.nuwairi-wedding.workers.dev/api/rsvp';
+  function sendRSVP(record) {
+    /* fire-and-forget; ignore failures so localStorage still confirms the guest */
+    try {
+      fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(record),
+        keepalive: true,
+      }).catch(() => {});
+    } catch (_) {}
+  }
   const $name = document.getElementById('rsvp-name');
   const $msg  = document.getElementById('rsvp-msg');
   const $form = document.getElementById('rsvp-form-wrapper');
@@ -2004,9 +2016,9 @@
   $yes.addEventListener('click', (e) => {
     const name = validateName(); if (!name) return;
     const msg = $msg.value.trim();
-    try {
-      localStorage.setItem('nuwairi_rsvp', JSON.stringify({ name, attend: 'yes', msg, ts: Date.now() }));
-    } catch (_) {}
+    const record = { name, attend: 'yes', msg, ts: Date.now() };
+    try { localStorage.setItem('nuwairi_rsvp', JSON.stringify(record)); } catch (_) {}
+    sendRSVP(record);
     const rect = e.currentTarget.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
@@ -2023,9 +2035,9 @@
       setTimeout(() => $msg.classList.remove('err'), 2200);
       return;
     }
-    try {
-      localStorage.setItem('nuwairi_rsvp', JSON.stringify({ name, attend: 'no', msg, ts: Date.now() }));
-    } catch (_) {}
+    const record = { name, attend: 'no', msg, ts: Date.now() };
+    try { localStorage.setItem('nuwairi_rsvp', JSON.stringify(record)); } catch (_) {}
+    sendRSVP(record);
     confirmNo(name);
   });
 

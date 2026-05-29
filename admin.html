@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#070914">
+<meta name="robots" content="noindex,nofollow">
+<title>لوحة تحكم العريس · زفاف أبو عبيدة ورميساء</title>
+
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='13' fill='%23f4d56e'/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Reem+Kufi:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg-0: #050714;
+    --gold-1: #ffe7a3;
+    --gold-2: #f4d06b;
+    --gold-3: #d4a93a;
+    --gold-4: #b88a1e;
+    --gold-5: #8a6817;
+    --ink: #0e0e1a;
+    --ink-mute: #555568;
+    --line: rgba(184, 138, 30, 0.25);
+    --bad: #c72e48;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    background:
+      radial-gradient(ellipse 60% 40% at 30% 20%, rgba(244, 208, 107, 0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 70% 80%, rgba(40, 18, 80, 0.40) 0%, transparent 70%),
+      #050714;
+    min-height: 100vh;
+    color: var(--ink);
+    font-family: 'Reem Kufi', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 36px 16px 80px;
+  }
+
+  /* ---- shared frame card ---- */
+  .frame {
+    background:
+      radial-gradient(ellipse at 18% 8%, rgba(255,255,255,0.85) 0%, rgba(255,253,245,0.78) 60%, transparent 95%),
+      linear-gradient(155deg, rgba(255,255,255,0.78) 0%, rgba(252,248,235,0.7) 100%);
+    backdrop-filter: blur(24px) saturate(1.3);
+    border: 1px solid rgba(255,255,255,0.65);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.9),
+      inset 0 -1px 0 rgba(184,138,30,0.3),
+      0 20px 50px rgba(0,0,0,0.5);
+    border-radius: 24px;
+  }
+
+  /* ---- login ---- */
+  .login {
+    max-width: 420px;
+    margin: 80px auto 0;
+    padding: 36px 28px 28px;
+    text-align: center;
+  }
+  .login .crown {
+    width: 56px; height: auto;
+    margin: 0 auto 12px;
+    display: block;
+    filter: drop-shadow(0 2px 8px rgba(184,138,30,0.4));
+  }
+  .login h1 {
+    font-family: 'Aref Ruqaa', serif;
+    font-weight: 700;
+    font-size: 22px;
+    background: linear-gradient(180deg, #8a6817 0%, #b88a1e 50%, #8a6817 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+  }
+  .login .sub {
+    color: var(--ink-mute);
+    font-size: 13px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .login input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(184, 138, 30, 0.4);
+    background: rgba(255, 252, 240, 0.85);
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+    text-align: center;
+    outline: none;
+    margin-bottom: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .login input:focus {
+    border-color: var(--gold-3);
+    box-shadow: 0 0 0 3px rgba(212,169,58,0.18);
+  }
+  .login button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(180deg, #f4d06b 0%, #d4a93a 50%, #8a6817 100%);
+    color: #2a1505;
+    font-family: 'Aref Ruqaa', serif;
+    font-weight: 700;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.5),
+      0 6px 16px rgba(184, 138, 30, 0.35);
+    transition: transform 0.15s, box-shadow 0.2s;
+  }
+  .login button:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 10px 22px rgba(184, 138, 30, 0.5); }
+  .login button:disabled { opacity: 0.6; cursor: progress; }
+  .login .err {
+    margin-top: 12px;
+    color: var(--bad);
+    font-size: 13px;
+    min-height: 18px;
+  }
+
+  /* ---- dashboard ---- */
+  .header {
+    padding: 22px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .header h1 {
+    font-family: 'Aref Ruqaa', serif;
+    font-weight: 700;
+    font-size: clamp(22px, 4.4vw, 30px);
+    background: linear-gradient(180deg, #8a6817 0%, #b88a1e 45%, #f4d06b 70%, #8a6817 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.3;
+  }
+  .header .sub {
+    color: var(--ink-mute);
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .header .actions { display: flex; gap: 10px; align-items: center; }
+  .btn-soft {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(184, 138, 30, 0.4);
+    background: rgba(255,253,245,0.78);
+    color: var(--gold-5);
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-soft:hover { background: rgba(255,253,245,1); transform: translateY(-1px); }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .stat {
+    padding: 18px 16px;
+    text-align: center;
+    border-radius: 18px;
+    background: rgba(255,253,245,0.78);
+    border: 1px solid rgba(184, 138, 30, 0.35);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.92),
+      0 6px 18px rgba(184, 138, 30, 0.12);
+  }
+  .stat .k {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold-5);
+    margin-bottom: 6px;
+    opacity: 0.85;
+  }
+  .stat .v {
+    font-family: 'Aref Ruqaa', serif;
+    font-weight: 700;
+    font-size: clamp(28px, 7vw, 40px);
+    line-height: 1;
+    background: linear-gradient(180deg, #8a6817 0%, #b88a1e 40%, #f4d06b 70%, #8a6817 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat.yes .v { background: linear-gradient(180deg, #1e6e2a 0%, #2da640 50%, #1e6e2a 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat.no  .v { background: linear-gradient(180deg, #7a1830 0%, #c72e48 50%, #7a1830 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+  /* ---- filters ---- */
+  .filters {
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+    margin: 0 6px 14px;
+  }
+  .filters .chip {
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(184, 138, 30, 0.4);
+    background: rgba(255,253,245,0.7);
+    color: var(--ink-mute);
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filters .chip.active {
+    background: linear-gradient(180deg, #f4d06b 0%, #d4a93a 100%);
+    color: #2a1505;
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(184, 138, 30, 0.3);
+  }
+  .filters .search {
+    flex: 1; min-width: 180px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(184, 138, 30, 0.35);
+    background: rgba(255,253,245,0.78);
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 14px;
+    outline: none;
+    color: var(--ink);
+    direction: rtl;
+    text-align: right;
+  }
+  .filters .search:focus { border-color: var(--gold-3); }
+
+  /* ---- list ---- */
+  .list { display: flex; flex-direction: column; gap: 10px; }
+  .row {
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: rgba(255,253,245,0.78);
+    border: 1px solid rgba(184, 138, 30, 0.25);
+    box-shadow: 0 4px 14px rgba(184, 138, 30, 0.08);
+    transition: transform 0.15s, box-shadow 0.2s;
+  }
+  .row:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(184, 138, 30, 0.15); }
+  .row.yes { border-left: 4px solid #2da640; }
+  .row.no  { border-left: 4px solid #c72e48; }
+  .row .top {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .row .name {
+    font-family: 'Aref Ruqaa', serif;
+    font-weight: 700;
+    font-size: clamp(16px, 3.6vw, 19px);
+    color: var(--ink);
+  }
+  .row .badge {
+    font-family: 'Reem Kufi', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+  .row.yes .badge { background: rgba(45, 166, 64, 0.15); color: #1e6e2a; }
+  .row.no  .badge { background: rgba(199, 46, 72, 0.13); color: #7a1830; }
+  .row .msg {
+    font-family: 'Amiri', serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+    padding: 8px 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .row .msg.empty { color: var(--ink-mute); font-style: italic; }
+  .row .meta {
+    margin-top: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 1px;
+    display: flex; gap: 12px; flex-wrap: wrap;
+  }
+
+  .empty-state {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--ink-mute);
+    font-family: 'Amiri', serif;
+    font-style: italic;
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    .stats { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .stat { padding: 14px 8px; }
+    .header { padding: 18px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<main>
+  <!-- LOGIN -->
+  <div class="login frame" id="login">
+    <svg class="crown" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="cg" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%"  stop-color="#fff8d8"/>
+          <stop offset="40%" stop-color="#f4d06b"/>
+          <stop offset="75%" stop-color="#d4a93a"/>
+          <stop offset="100%" stop-color="#8a6817"/>
+        </linearGradient>
+      </defs>
+      <path d="M 18 42 L 102 42 L 96 52 L 24 52 Z" fill="url(#cg)" stroke="#8a6817" stroke-width="0.6"/>
+      <path d="M 18 42 L 22 22 L 30 42 Z" fill="url(#cg)" stroke="#8a6817" stroke-width="0.5"/>
+      <path d="M 32 42 L 42 14 L 52 42 Z" fill="url(#cg)" stroke="#8a6817" stroke-width="0.5"/>
+      <path d="M 52 42 L 60 4  L 68 42 Z" fill="url(#cg)" stroke="#8a6817" stroke-width="0.5"/>
+      <path d="M 68 42 L 78 14 L 88 42 Z" fill="url(#cg)" stroke="#8a6817" stroke-width="0.5"/>
+      <path d="M 90 42 L 98 22 L 102 42 Z" fill="url(#cg)" stroke="#8a6817" stroke-width="0.5"/>
+      <circle cx="22" cy="22" r="2.2" fill="#fff8d8" stroke="#8a6817" stroke-width="0.4"/>
+      <circle cx="42" cy="14" r="2.6" fill="#fff8d8" stroke="#8a6817" stroke-width="0.4"/>
+      <circle cx="60" cy="4"  r="3"   fill="#fff8d8" stroke="#8a6817" stroke-width="0.4"/>
+      <circle cx="78" cy="14" r="2.6" fill="#fff8d8" stroke="#8a6817" stroke-width="0.4"/>
+      <circle cx="98" cy="22" r="2.2" fill="#fff8d8" stroke="#8a6817" stroke-width="0.4"/>
+    </svg>
+    <h1>لَوحَةُ تَحَكُّمِ العَريس</h1>
+    <div class="sub">NUWAIRI · WEDDING</div>
+    <input type="password" id="pass" placeholder="كلمة السر" autofocus>
+    <button id="login-btn">دُخول</button>
+    <div class="err" id="err"></div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard" id="dashboard" hidden>
+    <div class="frame header">
+      <div>
+        <h1>الرُّدودُ والرَّسائل</h1>
+        <div class="sub">NUWAIRI · WEDDING · 1447 H</div>
+      </div>
+      <div class="actions">
+        <button class="btn-soft" id="btn-refresh">⟲ تحديث</button>
+        <button class="btn-soft" id="btn-logout">خروج</button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="k">Total</div><div class="v" id="s-total">0</div></div>
+      <div class="stat yes"><div class="k">سيحضُر</div><div class="v" id="s-yes">0</div></div>
+      <div class="stat no"><div class="k">مُعتَذِر</div><div class="v" id="s-no">0</div></div>
+    </div>
+
+    <div class="filters">
+      <button class="chip active" data-filter="all">الكُل</button>
+      <button class="chip" data-filter="yes">الحاضرون</button>
+      <button class="chip" data-filter="no">المعتذرون</button>
+      <input class="search" id="search" placeholder="بحث في الاسم أو الرسالة...">
+    </div>
+
+    <div class="list" id="list"></div>
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  const API = 'https://nuwairi-wedding-api.nuwairi-wedding.workers.dev/api/admin/rsvps';
+  const $login = document.getElementById('login');
+  const $dash  = document.getElementById('dashboard');
+  const $pass  = document.getElementById('pass');
+  const $btn   = document.getElementById('login-btn');
+  const $err   = document.getElementById('err');
+  const $list  = document.getElementById('list');
+  const $search = document.getElementById('search');
+
+  let allItems = [];
+  let filter = 'all';
+  let query = '';
+  let authHeader = null;
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  function fmtDate(ts) {
+    const d = new Date(ts);
+    try { return d.toLocaleString('ar', { dateStyle: 'medium', timeStyle: 'short' }); }
+    catch { return d.toString(); }
+  }
+
+  function render() {
+    let items = allItems;
+    if (filter !== 'all') items = items.filter(r => r.attend === filter);
+    if (query) {
+      const q = query.toLowerCase();
+      items = items.filter(r =>
+        (r.name || '').toLowerCase().includes(q) ||
+        (r.msg  || '').toLowerCase().includes(q));
+    }
+    if (!items.length) {
+      $list.innerHTML = '<div class="empty-state">لا توجد ردود بعد</div>';
+      return;
+    }
+    $list.innerHTML = items.map(r => `
+      <div class="row ${r.attend}">
+        <div class="top">
+          <div class="name">${esc(r.name)}</div>
+          <div class="badge">${r.attend === 'yes' ? '✓ سَيحضُر' : '✕ مُعتَذِر'}</div>
+        </div>
+        <div class="msg ${r.msg ? '' : 'empty'}">${esc(r.msg) || '— بلا رسالة —'}</div>
+        <div class="meta">
+          <span>⏱ ${fmtDate(r.ts)}</span>
+          ${r.country ? `<span>🌍 ${esc(r.country)}</span>` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  async function fetchAll() {
+    if (!authHeader) return;
+    try {
+      const r = await fetch(API, { headers: { 'Authorization': authHeader } });
+      if (r.status === 401) { logout(); $err.textContent = 'انتهت الجلسة، أعد الدخول'; return; }
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const data = await r.json();
+      allItems = data.items || [];
+      document.getElementById('s-total').textContent = data.count;
+      document.getElementById('s-yes').textContent   = data.yes;
+      document.getElementById('s-no').textContent    = data.no;
+      render();
+    } catch (e) {
+      console.error(e);
+      $list.innerHTML = '<div class="empty-state">خطأ في جلب الردود — حاول التحديث</div>';
+    }
+  }
+
+  async function login() {
+    const pw = $pass.value.trim();
+    if (!pw) { $err.textContent = 'أدخل كلمة السر'; return; }
+    $btn.disabled = true; $err.textContent = '';
+    const candidate = 'Basic ' + btoa('admin:' + pw);
+    try {
+      const r = await fetch(API, { headers: { 'Authorization': candidate } });
+      if (r.status === 401) { $err.textContent = 'كلمة السر خاطئة'; $btn.disabled = false; return; }
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      authHeader = candidate;
+      sessionStorage.setItem('nuwairi_admin_auth', authHeader);
+      $login.hidden = true;
+      $dash.hidden = false;
+      const data = await r.json();
+      allItems = data.items || [];
+      document.getElementById('s-total').textContent = data.count;
+      document.getElementById('s-yes').textContent   = data.yes;
+      document.getElementById('s-no').textContent    = data.no;
+      render();
+    } catch (e) {
+      $err.textContent = 'تعذّر الاتصال بالخادم';
+    } finally {
+      $btn.disabled = false;
+    }
+  }
+
+  function logout() {
+    authHeader = null;
+    sessionStorage.removeItem('nuwairi_admin_auth');
+    $dash.hidden = true;
+    $login.hidden = false;
+    $pass.value = '';
+    $pass.focus();
+  }
+
+  $btn.addEventListener('click', login);
+  $pass.addEventListener('keydown', (e) => { if (e.key === 'Enter') login(); });
+  document.getElementById('btn-refresh').addEventListener('click', fetchAll);
+  document.getElementById('btn-logout').addEventListener('click', logout);
+  $search.addEventListener('input', (e) => { query = e.target.value.trim(); render(); });
+  document.querySelectorAll('.filters .chip').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.filters .chip').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      filter = b.dataset.filter;
+      render();
+    });
+  });
+
+  // Restore session
+  const saved = sessionStorage.getItem('nuwairi_admin_auth');
+  if (saved) {
+    authHeader = saved;
+    $login.hidden = true;
+    $dash.hidden = false;
+    fetchAll();
+  }
+})();
+</script>
+</body>
+</html>
