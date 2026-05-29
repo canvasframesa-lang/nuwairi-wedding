@@ -59,10 +59,10 @@
     --ink-soft:  #cbd3f0;
     --ink-dim:   #6a72a0;
 
-    /* Text — inside white glass */
-    --ink-body:  #1a1738;
-    --ink-deep:  #0f0a25;
-    --ink-mute:  #4a4773;
+    /* Text — inside white glass (pure black for max clarity over translucent glass) */
+    --ink-body:  #000000;
+    --ink-deep:  #000000;
+    --ink-mute:  #3a3a3a;
     --gold-text: #8a6817;
 
     /* Glass */
@@ -614,7 +614,8 @@
     -webkit-text-fill-color: transparent;
     font-weight: 700;
     animation: shimmer 7s linear infinite;
-    filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.6));
+    text-shadow: none;
+    filter: none;
   }
   .stanza em {
     font-style: normal;
