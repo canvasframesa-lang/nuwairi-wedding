@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#070914">
 <meta name="robots" content="noindex,nofollow">
 <title>لوحة تحكم العريس · زفاف أبو عبيدة ورميساء</title>
@@ -11,96 +11,139 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Reem+Kufi:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Reem+Kufi:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --bg-0: #050714;
-    --gold-1: #ffe7a3;
-    --gold-2: #f4d06b;
-    --gold-3: #d4a93a;
-    --gold-4: #b88a1e;
-    --gold-5: #8a6817;
-    --ink: #0e0e1a;
+    --gold-hi:  #fff8d8;
+    --gold-1:   #ffe7a3;
+    --gold-2:   #f4d06b;
+    --gold-3:   #d4a93a;
+    --gold-4:   #b88a1e;
+    --gold-5:   #8a6817;
+    --gold-shim: linear-gradient(90deg, #8a6817 0%, #b88a1e 25%, #f4d06b 50%, #b88a1e 75%, #8a6817 100%);
+
+    --ink:      #0a0a14;
     --ink-mute: #555568;
-    --line: rgba(184, 138, 30, 0.25);
-    --bad: #c72e48;
+    --line:     rgba(184, 138, 30, 0.22);
+
+    --green-1: #2da640;
+    --green-2: #1e6e2a;
+    --red-1:   #c72e48;
+    --red-2:   #7a1830;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  html, body {
-    background:
-      radial-gradient(ellipse 60% 40% at 30% 20%, rgba(244, 208, 107, 0.10) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 40% at 70% 80%, rgba(40, 18, 80, 0.40) 0%, transparent 70%),
-      #050714;
-    min-height: 100vh;
+  html, body { background: #050714; min-height: 100vh; }
+  body {
     color: var(--ink);
     font-family: 'Reem Kufi', sans-serif;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
+
+  /* ============ cosmos background ============ */
+  .cosmos {
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 55% 45% at 22% 18%, rgba(244, 208, 107, 0.16) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 40% at 78% 85%, rgba(217, 152, 120, 0.12) 0%, transparent 65%),
+      radial-gradient(ellipse 60% 40% at 50% 45%, rgba(40, 18, 80, 0.35) 0%, transparent 70%),
+      #020207;
+    pointer-events: none;
+  }
+  #dust { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 
   main {
-    max-width: 920px;
+    position: relative;
+    z-index: 2;
+    max-width: 980px;
     margin: 0 auto;
-    padding: 36px 16px 80px;
+    padding: 28px 18px 80px;
   }
 
-  /* ---- shared frame card ---- */
+  /* ============ shared frame card ============ */
   .frame {
     background:
-      radial-gradient(ellipse at 18% 8%, rgba(255,255,255,0.85) 0%, rgba(255,253,245,0.78) 60%, transparent 95%),
-      linear-gradient(155deg, rgba(255,255,255,0.78) 0%, rgba(252,248,235,0.7) 100%);
+      radial-gradient(ellipse at 18% 8%, rgba(255,255,255,0.85) 0%, rgba(255,253,245,0.75) 60%, transparent 95%),
+      linear-gradient(155deg, rgba(255,255,255,0.78) 0%, rgba(252,248,235,0.7) 50%, rgba(244,208,107,0.32) 100%);
     backdrop-filter: blur(24px) saturate(1.3);
-    border: 1px solid rgba(255,255,255,0.65);
+    -webkit-backdrop-filter: blur(24px) saturate(1.3);
+    border: 1px solid rgba(255,255,255,0.6);
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,0.9),
       inset 0 -1px 0 rgba(184,138,30,0.3),
-      0 20px 50px rgba(0,0,0,0.5);
+      0 20px 50px rgba(0,0,0,0.55);
     border-radius: 24px;
+    position: relative;
+  }
+  .frame::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 14%; right: 14%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.95), transparent);
+    pointer-events: none;
   }
 
-  /* ---- login ---- */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shimmer {
+    0%   { background-position: 200% 50%; }
+    100% { background-position: -200% 50%; }
+  }
+
+  /* ============ login ============ */
   .login {
-    max-width: 420px;
-    margin: 80px auto 0;
-    padding: 36px 28px 28px;
+    max-width: 440px;
+    margin: 12vh auto 0;
+    padding: 44px 32px 32px;
     text-align: center;
+    animation: rise 0.7s cubic-bezier(.16,1,.3,1) both;
   }
   .login .crown {
-    width: 56px; height: auto;
-    margin: 0 auto 12px;
+    width: 60px; height: auto;
+    margin: 0 auto 14px;
     display: block;
-    filter: drop-shadow(0 2px 8px rgba(184,138,30,0.4));
+    filter: drop-shadow(0 3px 10px rgba(184,138,30,0.45));
   }
   .login h1 {
     font-family: 'Aref Ruqaa', serif;
     font-weight: 700;
-    font-size: 22px;
-    background: linear-gradient(180deg, #8a6817 0%, #b88a1e 50%, #8a6817 100%);
+    font-size: clamp(22px, 5vw, 28px);
+    line-height: 1.3;
+    background: var(--gold-shim);
+    background-size: 220% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 6px;
+    animation: shimmer 6s linear infinite;
+    margin-bottom: 4px;
   }
   .login .sub {
-    color: var(--ink-mute);
-    font-size: 13px;
-    letter-spacing: 5px;
+    color: var(--gold-5);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 7px;
     text-transform: uppercase;
-    margin-bottom: 24px;
+    opacity: 0.8;
+    margin-bottom: 28px;
   }
   .login input {
     width: 100%;
     padding: 14px 16px;
-    border-radius: 12px;
+    border-radius: 14px;
     border: 1px solid rgba(184, 138, 30, 0.4);
-    background: rgba(255, 252, 240, 0.85);
+    background: rgba(255, 252, 240, 0.92);
     font-family: 'Reem Kufi', sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     color: var(--ink);
     text-align: center;
     outline: none;
     margin-bottom: 14px;
     transition: border-color 0.2s, box-shadow 0.2s;
+    direction: ltr;
+    letter-spacing: 2px;
   }
   .login input:focus {
     border-color: var(--gold-3);
@@ -108,216 +151,362 @@
   }
   .login button {
     width: 100%;
-    padding: 14px;
-    border-radius: 12px;
+    padding: 15px;
+    border-radius: 14px;
     border: none;
     background: linear-gradient(180deg, #f4d06b 0%, #d4a93a 50%, #8a6817 100%);
     color: #2a1505;
     font-family: 'Aref Ruqaa', serif;
     font-weight: 700;
-    font-size: 17px;
+    font-size: 18px;
     cursor: pointer;
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.5),
-      0 6px 16px rgba(184, 138, 30, 0.35);
+      inset 0 1px 0 rgba(255,255,255,0.55),
+      0 8px 20px rgba(184, 138, 30, 0.4);
     transition: transform 0.15s, box-shadow 0.2s;
   }
-  .login button:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 10px 22px rgba(184, 138, 30, 0.5); }
+  .login button:hover {
+    transform: translateY(-1px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.55), 0 12px 26px rgba(184, 138, 30, 0.55);
+  }
   .login button:disabled { opacity: 0.6; cursor: progress; }
   .login .err {
-    margin-top: 12px;
-    color: var(--bad);
+    margin-top: 14px;
+    color: var(--red-1);
     font-size: 13px;
     min-height: 18px;
   }
 
-  /* ---- dashboard ---- */
+  /* ============ dashboard ============ */
+  .dashboard { animation: rise 0.6s cubic-bezier(.16,1,.3,1) both; }
+
   .header {
-    padding: 22px 24px;
+    padding: 26px 28px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 14px;
+    gap: 18px;
     flex-wrap: wrap;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
   }
   .header h1 {
     font-family: 'Aref Ruqaa', serif;
     font-weight: 700;
-    font-size: clamp(22px, 4.4vw, 30px);
-    background: linear-gradient(180deg, #8a6817 0%, #b88a1e 45%, #f4d06b 70%, #8a6817 100%);
+    font-size: clamp(24px, 5vw, 34px);
+    line-height: 1.2;
+    background: var(--gold-shim);
+    background-size: 220% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    line-height: 1.3;
+    animation: shimmer 6s linear infinite;
   }
   .header .sub {
-    color: var(--ink-mute);
-    font-size: 12px;
-    letter-spacing: 5px;
+    color: var(--gold-5);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 6px;
     text-transform: uppercase;
-    margin-top: 4px;
+    margin-top: 6px;
+    opacity: 0.8;
   }
   .header .actions { display: flex; gap: 10px; align-items: center; }
   .btn-soft {
-    padding: 8px 14px;
+    padding: 10px 18px;
     border-radius: 999px;
-    border: 1px solid rgba(184, 138, 30, 0.4);
-    background: rgba(255,253,245,0.78);
+    border: 1px solid rgba(184, 138, 30, 0.45);
+    background: rgba(255,253,245,0.85);
     color: var(--gold-5);
     font-family: 'Reem Kufi', sans-serif;
-    font-size: 13px;
+    font-weight: 600;
+    font-size: 14px;
     cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
-  .btn-soft:hover { background: rgba(255,253,245,1); transform: translateY(-1px); }
+  .btn-soft:hover {
+    background: rgba(255,253,245,1);
+    transform: translateY(-1px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 4px 12px rgba(184,138,30,0.2);
+  }
+  .btn-soft.refreshing { opacity: 0.7; pointer-events: none; }
+  .btn-soft.refreshing .ic { animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
+  /* ============ stats — large, prominent ============ */
   .stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    gap: 14px;
     margin-bottom: 22px;
   }
   .stat {
-    padding: 18px 16px;
+    padding: 22px 18px;
     text-align: center;
-    border-radius: 18px;
-    background: rgba(255,253,245,0.78);
-    border: 1px solid rgba(184, 138, 30, 0.35);
+    border-radius: 22px;
+    background: rgba(255,253,245,0.85);
+    border: 1px solid rgba(184, 138, 30, 0.32);
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,0.92),
-      0 6px 18px rgba(184, 138, 30, 0.12);
+      0 8px 22px rgba(184, 138, 30, 0.15);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .stat .k {
+  .stat:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.92), 0 14px 30px rgba(184, 138, 30, 0.22); }
+  .stat .lbl {
     font-family: 'Inter', sans-serif;
     font-size: 10px;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
     text-transform: uppercase;
     color: var(--gold-5);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+    opacity: 0.85;
+  }
+  .stat .ar {
+    font-family: 'Reem Kufi', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 8px;
     opacity: 0.85;
   }
   .stat .v {
     font-family: 'Aref Ruqaa', serif;
     font-weight: 700;
-    font-size: clamp(28px, 7vw, 40px);
+    font-size: clamp(40px, 9vw, 60px);
     line-height: 1;
-    background: linear-gradient(180deg, #8a6817 0%, #b88a1e 40%, #f4d06b 70%, #8a6817 100%);
+    background: var(--gold-shim);
+    background-size: 220% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: shimmer 8s linear infinite;
+    filter: drop-shadow(0 1px 2px rgba(184,138,30,0.25));
   }
-  .stat.yes .v { background: linear-gradient(180deg, #1e6e2a 0%, #2da640 50%, #1e6e2a 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-  .stat.no  .v { background: linear-gradient(180deg, #7a1830 0%, #c72e48 50%, #7a1830 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat.yes .v {
+    background: linear-gradient(180deg, #2da640 0%, #1e6e2a 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: none;
+    filter: drop-shadow(0 1px 2px rgba(30, 110, 42, 0.3));
+  }
+  .stat.no .v {
+    background: linear-gradient(180deg, #c72e48 0%, #7a1830 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: none;
+    filter: drop-shadow(0 1px 2px rgba(122, 24, 48, 0.3));
+  }
+  .stat .ico {
+    position: absolute;
+    top: 12px; left: 14px;
+    width: 22px; height: 22px;
+    opacity: 0.3;
+  }
+  .stat .ico svg { width: 100%; height: 100%; }
 
-  /* ---- filters ---- */
+  /* ============ filters bar ============ */
   .filters {
     display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
-    margin: 0 6px 14px;
+    margin: 0 4px 16px;
+    padding: 10px 10px;
+    border-radius: 999px;
+    background: rgba(255,253,245,0.55);
+    border: 1px solid rgba(184, 138, 30, 0.18);
   }
   .filters .chip {
-    padding: 8px 16px;
+    padding: 9px 18px;
     border-radius: 999px;
-    border: 1px solid rgba(184, 138, 30, 0.4);
-    background: rgba(255,253,245,0.7);
-    color: var(--ink-mute);
+    border: none;
+    background: transparent;
+    color: var(--gold-5);
     font-family: 'Reem Kufi', sans-serif;
+    font-weight: 600;
     font-size: 13px;
     cursor: pointer;
     transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 6px;
   }
+  .filters .chip:hover { background: rgba(244, 208, 107, 0.18); }
   .filters .chip.active {
     background: linear-gradient(180deg, #f4d06b 0%, #d4a93a 100%);
     color: #2a1505;
-    border-color: transparent;
     box-shadow: 0 4px 12px rgba(184, 138, 30, 0.3);
   }
+  .filters .chip .count {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: rgba(0,0,0,0.1);
+    min-width: 18px;
+    text-align: center;
+  }
+  .filters .chip.active .count { background: rgba(255,255,255,0.55); color: #2a1505; }
   .filters .search {
     flex: 1; min-width: 180px;
-    padding: 8px 14px;
+    padding: 9px 16px;
     border-radius: 999px;
-    border: 1px solid rgba(184, 138, 30, 0.35);
-    background: rgba(255,253,245,0.78);
+    border: 1px solid rgba(184, 138, 30, 0.3);
+    background: rgba(255,253,245,0.9);
     font-family: 'Reem Kufi', sans-serif;
     font-size: 14px;
     outline: none;
     color: var(--ink);
     direction: rtl;
     text-align: right;
+    margin-right: 6px;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .filters .search:focus { border-color: var(--gold-3); }
+  .filters .search::placeholder { color: var(--ink-mute); opacity: 0.6; }
+  .filters .search:focus { border-color: var(--gold-3); box-shadow: 0 0 0 3px rgba(212,169,58,0.18); }
 
-  /* ---- list ---- */
-  .list { display: flex; flex-direction: column; gap: 10px; }
+  /* ============ list ============ */
+  .list { display: flex; flex-direction: column; gap: 12px; }
   .row {
-    padding: 16px 18px;
-    border-radius: 16px;
-    background: rgba(255,253,245,0.78);
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: rgba(255,253,245,0.92);
     border: 1px solid rgba(184, 138, 30, 0.25);
-    box-shadow: 0 4px 14px rgba(184, 138, 30, 0.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.9),
+      0 6px 18px rgba(184, 138, 30, 0.10);
     transition: transform 0.15s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
   }
-  .row:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(184, 138, 30, 0.15); }
-  .row.yes { border-left: 4px solid #2da640; }
-  .row.no  { border-left: 4px solid #c72e48; }
+  .row::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 4px;
+  }
+  .row:hover {
+    transform: translateY(-2px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 12px 28px rgba(184, 138, 30, 0.18);
+  }
+  .row.yes::after { background: linear-gradient(180deg, #2da640 0%, #1e6e2a 100%); }
+  .row.no::after  { background: linear-gradient(180deg, #c72e48 0%, #7a1830 100%); }
+
   .row .top {
     display: flex; align-items: center; justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 8px;
+    gap: 12px;
+    margin-bottom: 10px;
     flex-wrap: wrap;
   }
   .row .name {
     font-family: 'Aref Ruqaa', serif;
     font-weight: 700;
-    font-size: clamp(16px, 3.6vw, 19px);
+    font-size: clamp(17px, 4vw, 21px);
     color: var(--ink);
+    line-height: 1.3;
   }
   .row .badge {
     font-family: 'Reem Kufi', sans-serif;
-    font-size: 11px;
-    letter-spacing: 3px;
-    padding: 4px 12px;
-    border-radius: 999px;
     font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 4px;
   }
-  .row.yes .badge { background: rgba(45, 166, 64, 0.15); color: #1e6e2a; }
-  .row.no  .badge { background: rgba(199, 46, 72, 0.13); color: #7a1830; }
+  .row.yes .badge { background: rgba(45, 166, 64, 0.16); color: #1e6e2a; }
+  .row.no  .badge { background: rgba(199, 46, 72, 0.14); color: #7a1830; }
   .row .msg {
     font-family: 'Amiri', serif;
-    font-size: 15px;
-    line-height: 1.7;
+    font-size: clamp(15px, 3.5vw, 17px);
+    line-height: 1.85;
     color: var(--ink);
-    padding: 8px 0;
+    padding: 4px 0 6px;
     white-space: pre-wrap;
     word-break: break-word;
+    border-right: 3px solid rgba(184, 138, 30, 0.3);
+    padding-right: 12px;
+    margin-right: 0;
   }
-  .row .msg.empty { color: var(--ink-mute); font-style: italic; }
+  .row .msg.empty {
+    color: var(--ink-mute);
+    font-style: italic;
+    border-right-color: transparent;
+    padding-right: 0;
+    opacity: 0.7;
+  }
   .row .meta {
-    margin-top: 6px;
+    margin-top: 10px;
     font-family: 'Inter', sans-serif;
     font-size: 11px;
     color: var(--ink-mute);
     letter-spacing: 1px;
-    display: flex; gap: 12px; flex-wrap: wrap;
+    display: flex; gap: 14px; flex-wrap: wrap;
+    opacity: 0.85;
   }
+  .row .meta span { display: inline-flex; align-items: center; gap: 4px; }
 
+  /* ============ empty state ============ */
   .empty-state {
-    padding: 60px 20px;
+    padding: 70px 24px;
     text-align: center;
-    color: var(--ink-mute);
+    border-radius: 22px;
+    background: rgba(255,253,245,0.5);
+    border: 1px dashed rgba(184, 138, 30, 0.3);
+  }
+  .empty-state .eico {
+    width: 64px; height: 64px;
+    margin: 0 auto 18px;
+    opacity: 0.7;
+    filter: drop-shadow(0 3px 8px rgba(184,138,30,0.3));
+  }
+  .empty-state .ehead {
+    font-family: 'Aref Ruqaa', serif;
+    font-weight: 700;
+    font-size: clamp(20px, 4.5vw, 26px);
+    background: var(--gold-shim);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 6s linear infinite;
+    margin-bottom: 8px;
+  }
+  .empty-state .esub {
     font-family: 'Amiri', serif;
     font-style: italic;
-    font-size: 16px;
+    color: var(--gold-5);
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0.9;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .empty-state .esub a {
+    color: var(--gold-4);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 640px) {
+    main { padding: 22px 12px 60px; }
+    .header { padding: 20px 18px; }
     .stats { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-    .stat { padding: 14px 8px; }
-    .header { padding: 18px 18px; }
+    .stat { padding: 16px 8px; }
+    .stat .v { font-size: clamp(34px, 11vw, 48px); }
+    .stat .ar { font-size: 12px; }
+    .filters .search { min-width: 100%; margin-top: 6px; }
+    .row { padding: 14px 16px; }
   }
 </style>
 </head>
 <body>
+
+<div class="cosmos"></div>
+<canvas id="dust"></canvas>
 
 <main>
   <!-- LOGIN -->
@@ -345,7 +534,7 @@
     </svg>
     <h1>لَوحَةُ تَحَكُّمِ العَريس</h1>
     <div class="sub">NUWAIRI · WEDDING</div>
-    <input type="password" id="pass" placeholder="كلمة السر" autofocus>
+    <input type="password" id="pass" placeholder="••••••••" autofocus>
     <button id="login-btn">دُخول</button>
     <div class="err" id="err"></div>
   </div>
@@ -358,22 +547,46 @@
         <div class="sub">NUWAIRI · WEDDING · 1447 H</div>
       </div>
       <div class="actions">
-        <button class="btn-soft" id="btn-refresh">⟲ تحديث</button>
+        <button class="btn-soft" id="btn-refresh">
+          <span class="ic">⟲</span>
+          <span>تحديث</span>
+        </button>
         <button class="btn-soft" id="btn-logout">خروج</button>
       </div>
     </div>
 
     <div class="stats">
-      <div class="stat"><div class="k">Total</div><div class="v" id="s-total">0</div></div>
-      <div class="stat yes"><div class="k">سيحضُر</div><div class="v" id="s-yes">0</div></div>
-      <div class="stat no"><div class="k">مُعتَذِر</div><div class="v" id="s-no">0</div></div>
+      <div class="stat">
+        <div class="lbl">Total</div>
+        <div class="ar">الإجمالي</div>
+        <div class="v" id="s-total">0</div>
+      </div>
+      <div class="stat yes">
+        <div class="lbl">Attending</div>
+        <div class="ar">سَيحضُرون</div>
+        <div class="v" id="s-yes">0</div>
+      </div>
+      <div class="stat no">
+        <div class="lbl">Apologies</div>
+        <div class="ar">مُعتَذِرون</div>
+        <div class="v" id="s-no">0</div>
+      </div>
     </div>
 
     <div class="filters">
-      <button class="chip active" data-filter="all">الكُل</button>
-      <button class="chip" data-filter="yes">الحاضرون</button>
-      <button class="chip" data-filter="no">المعتذرون</button>
-      <input class="search" id="search" placeholder="بحث في الاسم أو الرسالة...">
+      <button class="chip active" data-filter="all">
+        <span>الكُل</span>
+        <span class="count" id="c-all">0</span>
+      </button>
+      <button class="chip" data-filter="yes">
+        <span>سَيحضُرون</span>
+        <span class="count" id="c-yes">0</span>
+      </button>
+      <button class="chip" data-filter="no">
+        <span>مُعتَذِرون</span>
+        <span class="count" id="c-no">0</span>
+      </button>
+      <input class="search" id="search" placeholder="🔍 بحث في الاسم أو الرسالة...">
     </div>
 
     <div class="list" id="list"></div>
@@ -385,6 +598,8 @@
   'use strict';
 
   const API = 'https://nuwairi-wedding-api.nuwairi-wedding.workers.dev/api/admin/rsvps';
+  const SHARE_URL = 'https://canvasframesa-lang.github.io/nuwairi-wedding/';
+
   const $login = document.getElementById('login');
   const $dash  = document.getElementById('dashboard');
   const $pass  = document.getElementById('pass');
@@ -392,6 +607,7 @@
   const $err   = document.getElementById('err');
   const $list  = document.getElementById('list');
   const $search = document.getElementById('search');
+  const $refresh = document.getElementById('btn-refresh');
 
   let allItems = [];
   let filter = 'all';
@@ -406,6 +622,34 @@
     try { return d.toLocaleString('ar', { dateStyle: 'medium', timeStyle: 'short' }); }
     catch { return d.toString(); }
   }
+  function flagFor(country) {
+    if (!country || country.length !== 2) return '';
+    return country.toUpperCase().replace(/./g, c => String.fromCodePoint(127397 + c.charCodeAt(0))) + ' ' + country;
+  }
+
+  function emptyStateHTML(hasData) {
+    if (hasData) {
+      return `<div class="empty-state">
+        <div class="ehead">لا توجد ردود تطابق البحث</div>
+        <div class="esub">جرّب تغيير المرشّحات أو مسح البحث</div>
+      </div>`;
+    }
+    return `<div class="empty-state">
+      <svg class="eico" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="eg" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="#fff8d8"/>
+            <stop offset="100%" stop-color="#b88a1e"/>
+          </linearGradient>
+        </defs>
+        <path d="M 32 8 L 38 26 L 56 26 L 42 38 L 48 56 L 32 46 L 16 56 L 22 38 L 8 26 L 26 26 Z"
+              fill="url(#eg)" stroke="#8a6817" stroke-width="0.8"/>
+      </svg>
+      <div class="ehead">في انتظار أوّل رَدّ</div>
+      <div class="esub">شارك رابط الدعوة على واتساب،<br>وستظهر هنا ردود الضيوف ورسائلهم لحظة وصولها.<br><br>
+        <a href="${SHARE_URL}" target="_blank">${SHARE_URL}</a></div>
+    </div>`;
+  }
 
   function render() {
     let items = allItems;
@@ -417,7 +661,7 @@
         (r.msg  || '').toLowerCase().includes(q));
     }
     if (!items.length) {
-      $list.innerHTML = '<div class="empty-state">لا توجد ردود بعد</div>';
+      $list.innerHTML = emptyStateHTML(allItems.length > 0);
       return;
     }
     $list.innerHTML = items.map(r => `
@@ -429,27 +673,40 @@
         <div class="msg ${r.msg ? '' : 'empty'}">${esc(r.msg) || '— بلا رسالة —'}</div>
         <div class="meta">
           <span>⏱ ${fmtDate(r.ts)}</span>
-          ${r.country ? `<span>🌍 ${esc(r.country)}</span>` : ''}
+          ${r.country ? `<span>🌍 ${esc(flagFor(r.country))}</span>` : ''}
         </div>
       </div>
     `).join('');
   }
 
+  function updateCounts(data) {
+    document.getElementById('s-total').textContent = data.count;
+    document.getElementById('s-yes').textContent   = data.yes;
+    document.getElementById('s-no').textContent    = data.no;
+    document.getElementById('c-all').textContent   = data.count;
+    document.getElementById('c-yes').textContent   = data.yes;
+    document.getElementById('c-no').textContent    = data.no;
+  }
+
   async function fetchAll() {
     if (!authHeader) return;
+    $refresh.classList.add('refreshing');
     try {
-      const r = await fetch(API, { headers: { 'Authorization': authHeader } });
+      const r = await fetch(API, { headers: { 'Authorization': authHeader }, cache: 'no-store' });
       if (r.status === 401) { logout(); $err.textContent = 'انتهت الجلسة، أعد الدخول'; return; }
       if (!r.ok) throw new Error('HTTP ' + r.status);
       const data = await r.json();
       allItems = data.items || [];
-      document.getElementById('s-total').textContent = data.count;
-      document.getElementById('s-yes').textContent   = data.yes;
-      document.getElementById('s-no').textContent    = data.no;
+      updateCounts(data);
       render();
     } catch (e) {
       console.error(e);
-      $list.innerHTML = '<div class="empty-state">خطأ في جلب الردود — حاول التحديث</div>';
+      $list.innerHTML = `<div class="empty-state">
+        <div class="ehead">خطأ في الاتصال</div>
+        <div class="esub">${esc(e.message)}<br>اضغط «تحديث» للمحاولة مرّة أخرى</div>
+      </div>`;
+    } finally {
+      $refresh.classList.remove('refreshing');
     }
   }
 
@@ -459,7 +716,7 @@
     $btn.disabled = true; $err.textContent = '';
     const candidate = 'Basic ' + btoa('admin:' + pw);
     try {
-      const r = await fetch(API, { headers: { 'Authorization': candidate } });
+      const r = await fetch(API, { headers: { 'Authorization': candidate }, cache: 'no-store' });
       if (r.status === 401) { $err.textContent = 'كلمة السر خاطئة'; $btn.disabled = false; return; }
       if (!r.ok) throw new Error('HTTP ' + r.status);
       authHeader = candidate;
@@ -468,9 +725,7 @@
       $dash.hidden = false;
       const data = await r.json();
       allItems = data.items || [];
-      document.getElementById('s-total').textContent = data.count;
-      document.getElementById('s-yes').textContent   = data.yes;
-      document.getElementById('s-no').textContent    = data.no;
+      updateCounts(data);
       render();
     } catch (e) {
       $err.textContent = 'تعذّر الاتصال بالخادم';
@@ -490,7 +745,7 @@
 
   $btn.addEventListener('click', login);
   $pass.addEventListener('keydown', (e) => { if (e.key === 'Enter') login(); });
-  document.getElementById('btn-refresh').addEventListener('click', fetchAll);
+  $refresh.addEventListener('click', fetchAll);
   document.getElementById('btn-logout').addEventListener('click', logout);
   $search.addEventListener('input', (e) => { query = e.target.value.trim(); render(); });
   document.querySelectorAll('.filters .chip').forEach(b => {
@@ -502,7 +757,10 @@
     });
   });
 
-  // Restore session
+  // auto-refresh every 20s when dashboard visible
+  setInterval(() => { if (!$dash.hidden && document.visibilityState === 'visible') fetchAll(); }, 20000);
+
+  // restore session
   const saved = sessionStorage.getItem('nuwairi_admin_auth');
   if (saved) {
     authHeader = saved;
@@ -510,6 +768,49 @@
     $dash.hidden = false;
     fetchAll();
   }
+
+  /* ============ gold dust background ============ */
+  const dust = document.getElementById('dust');
+  const dctx = dust.getContext('2d');
+  let particles = [];
+  const dpr = Math.max(1, Math.min(2, devicePixelRatio || 1));
+  function resize() {
+    dust.width = innerWidth * dpr; dust.height = innerHeight * dpr;
+    dust.style.width = innerWidth + 'px'; dust.style.height = innerHeight + 'px';
+    dctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function spawn() {
+    particles.push({
+      x: Math.random() * innerWidth,
+      y: innerHeight + 10,
+      r: 0.5 + Math.random() * 1.5,
+      vy: -(0.2 + Math.random() * 0.5),
+      a: 0, maxA: 0.15 + Math.random() * 0.35,
+      life: 0, maxLife: 400 + Math.random() * 400,
+      drift: Math.random() * Math.PI * 2, ds: 0.01 + Math.random() * 0.02
+    });
+  }
+  function loop() {
+    dctx.clearRect(0, 0, innerWidth, innerHeight);
+    if (Math.random() < 0.25 && particles.length < 50) spawn();
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.life++; p.drift += p.ds;
+      p.x += Math.sin(p.drift) * 0.3; p.y += p.vy;
+      if (p.life < 80) p.a = (p.life / 80) * p.maxA;
+      else if (p.life > p.maxLife - 80) p.a = ((p.maxLife - p.life) / 80) * p.maxA;
+      else p.a = p.maxA;
+      if (p.life > p.maxLife || p.y < -10) { particles.splice(i, 1); continue; }
+      dctx.beginPath();
+      dctx.fillStyle = `rgba(244, 208, 107, ${p.a})`;
+      dctx.shadowBlur = 8; dctx.shadowColor = `rgba(244, 208, 107, ${p.a * 0.8})`;
+      dctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); dctx.fill();
+      dctx.shadowBlur = 0;
+    }
+    requestAnimationFrame(loop);
+  }
+  addEventListener('resize', resize);
+  resize(); loop();
 })();
 </script>
 </body>
